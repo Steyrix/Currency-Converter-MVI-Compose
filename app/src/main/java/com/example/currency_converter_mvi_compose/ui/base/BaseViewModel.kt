@@ -17,7 +17,11 @@ interface ViewEvent
 
 interface ViewEffect
 
-abstract class BaseViewModel<UiState: ViewState, Event: ViewEvent, Effect: ViewEffect> : ViewModel() {
+abstract class BaseViewModel<
+        UiState : ViewState,
+        Event : ViewEvent,
+        Effect : ViewEffect
+        > : ViewModel() {
 
     abstract fun setInitialState(): UiState
     abstract fun onEventReceived(event: Event)
@@ -25,7 +29,7 @@ abstract class BaseViewModel<UiState: ViewState, Event: ViewEvent, Effect: ViewE
     private val initialState: UiState by lazy {
         setInitialState()
     }
-    
+
     private val viewState: MutableState<UiState> = mutableStateOf(initialState)
 
     private val eventFlow: MutableSharedFlow<Event> = MutableSharedFlow()
@@ -60,5 +64,4 @@ abstract class BaseViewModel<UiState: ViewState, Event: ViewEvent, Effect: ViewE
             eventFlow.emit(event)
         }
     }
-
 }
