@@ -1,4 +1,4 @@
-package com.example.currency_converter_mvi_compose
+package com.example.currency_converter_mvi_compose.main.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
