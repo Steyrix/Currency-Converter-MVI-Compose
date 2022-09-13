@@ -1,5 +1,6 @@
-package com.example.currency_converter_mvi_compose.main.data
+package com.example.currency_converter_mvi_compose.main.data.repository
 
+import com.example.currency_converter_mvi_compose.main.data.CurrencyRateService
 import com.example.currency_converter_mvi_compose.main.data.response.Currency
 import com.example.currency_converter_mvi_compose.main.data.response.CurrencyRate
 import javax.inject.Inject

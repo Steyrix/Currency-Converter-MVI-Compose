@@ -1,7 +1,7 @@
 package com.example.currency_converter_mvi_compose.main.view
 
 import androidx.lifecycle.viewModelScope
-import com.example.currency_converter_mvi_compose.main.data.CurrencyConverterRepository
+import com.example.currency_converter_mvi_compose.main.data.repository.CurrencyConverterRepository
 import com.example.currency_converter_mvi_compose.main.domain.ComputeCurrencyRatesUseCase
 import com.example.currency_converter_mvi_compose.view.BaseViewModel
 import kotlinx.coroutines.launch

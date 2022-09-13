@@ -1,7 +1,7 @@
 package com.example.currency_converter_mvi_compose.main.domain
 
 import com.example.currency_converter_mvi_compose.main.data.response.Currency
-import com.example.currency_converter_mvi_compose.main.data.CurrencyConverterRepository
+import com.example.currency_converter_mvi_compose.main.data.repository.CurrencyConverterRepository
 import com.example.currency_converter_mvi_compose.main.data.response.CurrencyRate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

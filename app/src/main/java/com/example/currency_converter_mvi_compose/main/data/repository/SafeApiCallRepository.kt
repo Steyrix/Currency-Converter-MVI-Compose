@@ -1,4 +1,4 @@
-package com.example.currency_converter_mvi_compose.main.data
+package com.example.currency_converter_mvi_compose.main.data.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
