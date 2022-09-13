@@ -7,14 +7,12 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-private const val BASE_URL = "https://openexchangerates.org/api/"
-private const val APP_ID_PARAM = "app_id"
-private const val APP_ID_VALUE = "1eb269224d074b83924241a2e277ccf7"
+import javax.inject.Singleton
 
 @Module
-object MainModule {
+object MainNetworkingModule {
 
+    @Singleton
     @Provides
     fun provideCurrencyRateService(
         retrofit: Retrofit
@@ -28,7 +26,7 @@ object MainModule {
     ): Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("https://openexchangerates.org/api/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -42,7 +40,7 @@ object MainModule {
                     var request = chain.request()
                     val url = request.url()
                         .newBuilder()
-                        .addQueryParameter(APP_ID_PARAM, APP_ID_VALUE)
+                        .addQueryParameter("app_id", "1eb269224d074b83924241a2e277ccf7")
                         .build()
 
                     request = request
