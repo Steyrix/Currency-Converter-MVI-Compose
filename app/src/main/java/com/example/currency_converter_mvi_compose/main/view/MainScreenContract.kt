@@ -1,13 +1,19 @@
 package com.example.currency_converter_mvi_compose.main.view
 
-import android.icu.util.Currency
+import com.example.currency_converter_mvi_compose.main.data.response.Currency
+import com.example.currency_converter_mvi_compose.main.data.response.CurrencyRate
 import com.example.currency_converter_mvi_compose.view.ViewEffect
 import com.example.currency_converter_mvi_compose.view.ViewEvent
 import com.example.currency_converter_mvi_compose.view.ViewState
 
 class MainScreenContract {
+
     data class State(
-        val isLoading: Boolean = false
+        val currentCurrency: Currency = Currency("", ""),
+        val currencies: List<Currency> = emptyList(),
+        val rates: List<CurrencyRate> = emptyList(),
+        val isLoading: Boolean = false,
+        val isError: Boolean = false
     ) : ViewState
 
     sealed class Event : ViewEvent {
@@ -19,11 +25,10 @@ class MainScreenContract {
     }
 
     sealed class Effect : ViewEffect {
+        sealed class NetworkCall : Effect() {
+            object Failed : NetworkCall()
 
-        sealed class Update : Effect() {
-            object Failed : Update()
-
-            data class Succeeded(val newRate: Float) : Update()
+            object Succeeded : NetworkCall()
         }
     }
 }
