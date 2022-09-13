@@ -5,7 +5,7 @@ import retrofit2.http.Query
 
 interface CurrencyRateService {
 
-    @GET("latest.json/")
+    @GET("latest.json")
     suspend fun getUSDCurrencyRate(
         @Query("base") base: String = "USD"
     ): CurrencyRateResponse
