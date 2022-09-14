@@ -5,8 +5,10 @@ import com.example.currency_converter_mvi_compose.main.data.repository.CurrencyC
 import com.example.currency_converter_mvi_compose.main.domain.ComputeCurrencyRatesUseCase
 import com.example.currency_converter_mvi_compose.view.BaseViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(
+class MainViewModel
+@Inject constructor(
     private val repository: CurrencyConverterRepository,
     private val currencyRatesComputer: ComputeCurrencyRatesUseCase
 ) : BaseViewModel<
