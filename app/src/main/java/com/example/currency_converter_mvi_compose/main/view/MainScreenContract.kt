@@ -17,7 +17,7 @@ class MainScreenContract {
     ) : ViewState
 
     sealed class Event : ViewEvent {
-        data class AmountChanging(val newAmount: Float) : Event()
+        data class AmountChanging(val newAmount: Double) : Event()
 
         data class CurrencySelection(val newCurrency: Currency) : Event()
 
@@ -25,7 +25,9 @@ class MainScreenContract {
     }
 
     sealed class Effect : ViewEffect {
+
         sealed class NetworkCall : Effect() {
+
             object Failed : NetworkCall()
 
             object Succeeded : NetworkCall()
