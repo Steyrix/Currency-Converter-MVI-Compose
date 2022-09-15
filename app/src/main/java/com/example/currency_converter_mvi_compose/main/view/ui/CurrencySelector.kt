@@ -6,7 +6,7 @@ import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import com.example.currency_converter_mvi_compose.main.data.response.Currency
+import com.example.currency_converter_mvi_compose.main.data.model.Currency
 import com.example.currency_converter_mvi_compose.main.view.MainScreenContract
 
 @Composable

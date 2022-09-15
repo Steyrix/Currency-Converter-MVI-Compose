@@ -9,9 +9,9 @@ fun AmountField(
     onEventSent: (MainScreenContract.Event) -> Unit
 ) {
     TextField(
-        value = "1.000000",
+        value = "1.0",
         onValueChange = { value ->
             onEventSent(MainScreenContract.Event.AmountChanging(value.toDouble()))
-        }
+        },
     )
 }
