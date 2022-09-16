@@ -4,13 +4,15 @@ import com.example.currency_converter_mvi_compose.main.data.model.Currency
 import com.example.currency_converter_mvi_compose.main.data.repository.CurrencyConverterRepository
 import com.example.currency_converter_mvi_compose.main.data.model.CurrencyRate
 import javax.inject.Inject
-import kotlin.math.pow
-import kotlin.math.roundToInt
 
 class ComputeCurrencyRatesUseCase
 @Inject constructor(
     private val repository: CurrencyConverterRepository
 ) : SafeComputationCallUseCase {
+
+    companion object {
+        private val exception = IllegalStateException("Has not enough data to compute rates")
+    }
 
     suspend fun getRatesForCurrency(currency: Currency): Result<List<CurrencyRate>> {
         val map = repository.getDollarValueMap()
@@ -26,10 +28,9 @@ class ComputeCurrencyRatesUseCase
         availableCurrencies: List<Currency>,
         currentCurrency: Currency
     ): List<CurrencyRate> {
-        val illegalStateException = IllegalStateException("Has not enough data")
 
         val targetToUSD = dollarValueMap[currentCurrency.symbol]
-            ?: throw illegalStateException
+            ?: throw exception
         val rates = mutableListOf<CurrencyRate>()
 
         availableCurrencies.forEach {
@@ -43,13 +44,8 @@ class ComputeCurrencyRatesUseCase
             }
         }
 
-        if (rates.isEmpty()) throw illegalStateException
+        if (rates.isEmpty()) throw exception
 
         return rates
-    }
-
-    private fun Double.roundTo(numFractionDigits: Int): Double {
-        val factor = 10.0.pow(numFractionDigits.toDouble())
-        return (this * factor).roundToInt() / factor
     }
 }

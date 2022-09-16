@@ -27,7 +27,7 @@ fun CurrenciesAmountsGrid(
     isError: Boolean
 ) {
     LazyVerticalGrid(
-        cells = GridCells.Adaptive(minSize = 120.dp),
+        cells = GridCells.Fixed(3),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {

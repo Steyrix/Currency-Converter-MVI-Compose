@@ -32,8 +32,7 @@ fun MainScreen(
 
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = Modifier
-            .padding(16.dp, 0.dp),
+        modifier = Modifier.padding(16.dp, 0.dp),
         horizontalAlignment = Alignment.End
     ) {
         AmountField(

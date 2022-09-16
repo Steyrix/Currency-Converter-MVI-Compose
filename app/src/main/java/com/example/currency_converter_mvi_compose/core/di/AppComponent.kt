@@ -9,7 +9,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [MainNetworkingModule::class])
+@Component(modules = [AppModule::class, MainNetworkingModule::class])
 interface AppComponent {
     @OptIn(ExperimentalFoundationApi::class)
     fun inject(activity: MainActivity)

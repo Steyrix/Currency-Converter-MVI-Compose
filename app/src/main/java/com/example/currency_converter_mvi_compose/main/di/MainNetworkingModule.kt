@@ -1,5 +1,6 @@
 package com.example.currency_converter_mvi_compose.main.di
 
+import com.example.currency_converter_mvi_compose.core.network.QueryParameterInterceptor
 import com.example.currency_converter_mvi_compose.main.data.CurrencyRateService
 import dagger.Module
 import dagger.Provides
@@ -12,8 +13,8 @@ import javax.inject.Singleton
 @Module
 object MainNetworkingModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideCurrencyRateService(
         retrofit: Retrofit
     ): CurrencyRateService {
@@ -38,20 +39,9 @@ object MainNetworkingModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
-        return OkHttpClient().newBuilder().addInterceptor { chain ->
-            var request = chain.request()
-            val url = request.url()
-                .newBuilder()
-                .addQueryParameter("app_id", "1eb269224d074b83924241a2e277ccf7")
-                .build()
-
-            request = request
-                .newBuilder()
-                .url(url)
-                .build()
-
-            chain.proceed(request)
-        }
+        return OkHttpClient()
+            .newBuilder()
+            .addInterceptor(QueryParameterInterceptor())
             .addInterceptor(logger)
             .build()
     }

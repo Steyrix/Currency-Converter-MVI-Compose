@@ -1,6 +1,5 @@
 package com.example.currency_converter_mvi_compose.main.view
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.currency_converter_mvi_compose.main.data.repository.CurrencyConverterRepository
 import com.example.currency_converter_mvi_compose.main.data.model.Currency
@@ -37,7 +36,7 @@ class MainViewModel
     override fun onEventReceived(event: MainScreenContract.Event) {
         when (event) {
             is MainScreenContract.Event.AmountChanging -> {
-                getAmounts()
+                setNewAmount(event.newAmount)
             }
             is MainScreenContract.Event.CurrencySelection -> {
                 setNewCurrency(event.newCurrency)
@@ -58,7 +57,6 @@ class MainViewModel
                     getCurrencyRates()
                 }
                 .onFailure {
-                    Log.d("GGG", "getAvailableCurrencies f")
                     setState { copy(isError = true, isLoading = false) }
                 }
         }
@@ -71,7 +69,6 @@ class MainViewModel
                     getRatesForCurrency()
                 }
                 .onFailure {
-                    Log.d("GGG", "getCurrencyRates f")
                     setState { copy(isError = true) }
                 }
         }
@@ -85,7 +82,6 @@ class MainViewModel
                     getAmounts()
                 }
                 .onFailure {
-                    Log.d("GGG", "getRatesForCurrency f")
                     setState { copy(isError = true) }
                 }
         }

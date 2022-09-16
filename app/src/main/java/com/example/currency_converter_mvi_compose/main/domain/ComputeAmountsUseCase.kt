@@ -8,7 +8,7 @@ class ComputeAmountsUseCase
 @Inject constructor() : SafeComputationCallUseCase {
 
     companion object {
-        val exception = IllegalArgumentException("Empty currency rates list")
+        private val exception = IllegalArgumentException("Empty currency rates list")
     }
 
     suspend fun getAmounts(
@@ -27,11 +27,14 @@ class ComputeAmountsUseCase
         currencyRates: List<CurrencyRate>
     ): List<Amount> {
         return currencyRates.map {
-            Amount(it, computeAmount(it.rate, baseCurrencyAmount))
+            Amount(it, computeAmount(it.rate, baseCurrencyAmount).roundTo(3))
         }
     }
 
-    private fun computeAmount(rate: Double, base: Double): Double {
+    private fun computeAmount(
+        rate: Double,
+        base: Double
+    ): Double {
         return if (rate >= 1) {
             rate * base
         } else {
