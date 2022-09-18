@@ -1,4 +1,4 @@
-package com.example.currency_converter_mvi_compose.view
+package com.example.currency_converter_mvi_compose.core.view
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State

@@ -5,7 +5,7 @@ import com.example.currency_converter_mvi_compose.main.data.repository.CurrencyC
 import com.example.currency_converter_mvi_compose.main.data.model.Currency
 import com.example.currency_converter_mvi_compose.main.domain.ComputeAmountsUseCase
 import com.example.currency_converter_mvi_compose.main.domain.ComputeCurrencyRatesUseCase
-import com.example.currency_converter_mvi_compose.view.BaseViewModel
+import com.example.currency_converter_mvi_compose.core.view.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,7 +28,7 @@ class MainViewModel
             currentCurrency = CurrencyConverterRepository.DEFAULT_CURRENCY,
             currencies = emptyList(),
             rates = emptyList(),
-            isLoading = true,
+            isRefreshing = true,
             isError = false
         )
     }
@@ -41,6 +41,10 @@ class MainViewModel
             is MainScreenContract.Event.CurrencySelection -> {
                 setNewCurrency(event.newCurrency)
             }
+            is MainScreenContract.Event.Refreshing -> {
+                setState { copy(isRefreshing = true) }
+                getAvailableCurrencies()
+            }
         }
     }
 
@@ -50,14 +54,13 @@ class MainViewModel
                 .onSuccess {
                     setState {
                         copy(
-                            currencies = it,
-                            isLoading = false
+                            currencies = it
                         )
                     }
                     getCurrencyRates()
                 }
                 .onFailure {
-                    setState { copy(isError = true, isLoading = false) }
+                    setState { copy(isError = true, isRefreshing = false) }
                 }
         }
     }
@@ -69,7 +72,7 @@ class MainViewModel
                     getRatesForCurrency()
                 }
                 .onFailure {
-                    setState { copy(isError = true) }
+                    setState { copy(isError = true, isRefreshing = false) }
                 }
         }
     }
@@ -82,7 +85,7 @@ class MainViewModel
                     getAmounts()
                 }
                 .onFailure {
-                    setState { copy(isError = true) }
+                    setState { copy(isError = true, isRefreshing = false) }
                 }
         }
     }
@@ -94,10 +97,10 @@ class MainViewModel
                 currencyRates = getState().value.rates
             )
                 .onSuccess {
-                    setState { copy(amounts = it) }
+                    setState { copy(amounts = it, isRefreshing = false) }
                 }
                 .onFailure {
-                    setState { copy(isError = true) }
+                    setState { copy(isError = true, isRefreshing = false) }
                 }
         }
     }

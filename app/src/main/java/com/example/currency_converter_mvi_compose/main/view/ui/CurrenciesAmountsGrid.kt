@@ -3,7 +3,6 @@ package com.example.currency_converter_mvi_compose.main.view.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,11 +22,13 @@ import com.example.currency_converter_mvi_compose.main.data.model.Amount
 @Composable
 fun CurrenciesAmountsGrid(
     amounts: List<Amount>,
-    isLoading: Boolean,
-    isError: Boolean
+    isError: Boolean,
+    isRefreshing: Boolean
 ) {
+
+
     LazyVerticalGrid(
-        cells = GridCells.Fixed(3),
+        GridCells.Fixed(3),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -65,5 +66,5 @@ fun CurrenciesAmountsGrid(
         }
     }
 
-    if (isLoading) CircularProgressIndicator()
+    if (isRefreshing) CircularProgressIndicator()
 }

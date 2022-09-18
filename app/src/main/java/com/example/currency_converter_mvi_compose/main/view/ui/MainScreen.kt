@@ -4,6 +4,8 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -45,10 +47,16 @@ fun MainScreen(
             onEventSent = onEventSent
         )
 
+        Button(
+            onClick = { onEventSent(MainScreenContract.Event.Refreshing) }
+        ) {
+            Text(text = "Update")
+        }
+
         CurrenciesAmountsGrid(
             amounts = state.amounts,
-            isLoading = state.isLoading,
-            isError = state.isError
+            isError = state.isError,
+            isRefreshing = state.isRefreshing
         )
     }
 }

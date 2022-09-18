@@ -29,7 +29,6 @@ class MainActivity : ComponentActivity() {
         (applicationContext as CurrencyConverterApp).appComponent.inject(this)
         setContent {
             CurrencyConverterMVIComposeTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
                     MainScreen(
                         state = viewModel.getState().value,
