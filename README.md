@@ -15,9 +15,7 @@ Implemented features:
 - Caching of fetched data
 - Conversion from any available currency to other one
 
-<img src="screenshot_1.png" alt="Example of app working" width="200" height="420" />
-<img src="screenshot_2.png" alt="Example of app working" width="200" height="420" />
-<img src="screenshot_3.png" alt="Example of app working" width="200" height="420" />
+<img src="screenshot_1.png" alt="Example of app working" width="100" height="210" /> <img src="screenshot_2.png" alt="Example of app working" width="100" height="210" /> <img src="screenshot_3.png" alt="Example of app working" width="100" height="210" />
 
 ## To do:
 - Implement validation of input, to provide the ability to input any data without a crash
