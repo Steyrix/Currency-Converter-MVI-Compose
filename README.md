@@ -15,9 +15,9 @@ Implemented features:
 - Caching of fetched data
 - Conversion from any available currency to other one
 
-![alt text](screenshot_1.png "Example of application working")
-![alt text](screenshot_2.png "Example of application working")
-![alt text](screenshot_3.png "Example of application working")
+![alt text](screenshot_1.png =200x420 "Example of application working")
+![alt text](screenshot_2.png =200x420 "Example of application working")
+![alt text](screenshot_3.png =200x420 "Example of application working")
 
 ## To do:
 - Implement validation of input, to provide the ability to input any data without a crash
